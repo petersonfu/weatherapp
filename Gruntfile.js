@@ -431,7 +431,7 @@ module.exports = function (grunt) {
       },
       pages: {
         options: {
-          remote: 'git@github.com:petersonfu/mg-frontend.git',
+          remote: 'git@github.com:petersonfu/weatherapp.git',
           branch: 'gh-pages'
         }
       }
