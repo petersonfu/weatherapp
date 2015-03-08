@@ -9,13 +9,13 @@
  * Filter in the weatherappNgApp.
  */
 angular.module('weatherappNgApp')
-  .filter('formatVisibility', function() {
+  .filter('formatVisibility', function(useUSUnits) {
     return function(visibility) {
+      var useUSUnitsValue = useUSUnits.value;
 
       // If using US units, convert to miles.
-      var useUSUnits = this.useUSUnits,
-        distance = (useUSUnits ? visibility * 0.621371 : visibility).toFixed(1);
+      var distance = (useUSUnitsValue ? visibility * 0.621371 : visibility).toFixed(1);
 
-      return distance + ((useUSUnits) ? ' mi' : ' km');
+      return distance + ((useUSUnitsValue) ? ' mi' : ' km');
     };
   });

@@ -43,6 +43,8 @@ angular
         resolve: {
           immediate: [function() {
             $('body').removeClass().addClass('show-selected-city');
+            $('body').removeClass('is-cloudy').removeClass('is-night').removeClass('is-day').addClass(this.conditionClassname(city.weatherData));
+            $('nav').removeClass('is-cloudy').removeClass('is-night').removeClass('is-day').addClass(this.conditionClassname(city.weatherData));
           }]
         }
       })

@@ -9,14 +9,14 @@
  * Filter in the weatherappNgApp.
  */
 angular.module('weatherappNgApp')
-  .filter('formatWind', function() {
+  .filter('formatWind', function(useUSUnits, formatBearingFilter) {
     return function(conditions) {
+      var useUSUnitsValue = useUSUnits.value;
 
       // If US units, then convert from km to miles.
-      var useUSUnits = this.useUSUnits,
-        speed = (useUSUnits ? conditions.windSpeed * 0.621371 : conditions.windSpeed).toFixed(1);
+      var speed = (useUSUnitsValue ? conditions.windSpeed * 0.621371 : conditions.windSpeed).toFixed(1);
 
       // Also, add the bearing.
-      return speed + (useUSUnits ? ' mph' : ' kph') + ' ' + this.formatBearing(new Date(conditions.windBearing), true);
+      return speed + (useUSUnitsValue ? ' mph' : ' kph') + ' ' + formatBearingFilter(new Date(conditions.windBearing), true);
     };
   });

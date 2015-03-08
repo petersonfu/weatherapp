@@ -1,8 +1,9 @@
 <div id="selected-city" ng-init="hourly0 = city.weatherData.hourly.data[0]; daily0 = city.weatherData.daily.data[0]; offset = city.weatherData.offset;">
+  <button ng-click="useUSUnits.flip()">Test binding</button>
   <section id="city-header">
     <h2 ng-bind="city.name"></h2>
     <h4 ng-bind="hourly0.summary"></h4>
-    <h1 ng-bind="hourly0.temperature | formatTemperature"></h1>
+    <h1 ng-bind="hourly0.temperature | formatTemperature | bindField:useUSUnits"></h1>
   </section>
   <section id="today">
     <ul class="today-overview"
@@ -11,9 +12,9 @@
       </li>
       <li ng-bind="relativeDate(localDate)">
       </li>
-      <li ng-bind="daily0.temperatureMax | formatTemperature">
+      <li ng-bind="daily0.temperatureMax | formatTemperature | bindField:useUSUnits">
       </li>
-      <li ng-bind="daily0.temperatureMin | formatTemperature">
+      <li ng-bind="daily0.temperatureMin | formatTemperature | bindField:useUSUnits">
       </li>
     </ul>
     <div class="today-hourly-list-container">
@@ -30,7 +31,7 @@
               <img ng-src="images/{{data.icon}}.png">
             </li>
             <li>
-              {{data.temperature | formatTemperature}}
+              {{data.temperature | formatTemperature | bindField:useUSUnits}}
             </li>
           </ul>
         </li>
@@ -48,10 +49,10 @@
             <img ng-src="images/{{data.icon}}.png">
           </li>
           <li>
-            {{data.temperatureMax | formatTemperature}}
+            {{data.temperatureMax | formatTemperature | bindField:useUSUnits}}
           </li>
           <li>
-            {{data.temperatureMin | formatTemperature}}
+            {{data.temperatureMin | formatTemperature | bindField:useUSUnits}}
           </li>
         </ul>
       </li>
@@ -103,13 +104,13 @@
       <li>
         <ul>
           <li>Wind:</li>
-          <li>{{hourly0 | formatWind}}</li>
+          <li>{{hourly0 | formatWind | bindField:useUSUnits}}</li>
         </ul>
       </li>
       <li>
         <ul>
           <li>Feels like:</li>
-          <li>{{hourly0.apparentTemperature | formatTemperature}}</li>
+          <li>{{hourly0.apparentTemperature | formatTemperature | bindField:useUSUnits}}</li>
         </ul>
       </li>
       <li>
@@ -121,13 +122,13 @@
       <li>
         <ul>
           <li>Precipitation:</li>
-          <li>{{hourly0.precipIntensity | formatPrecipitation}}</li>
+          <li>{{hourly0.precipIntensity | formatPrecipitation | bindField:useUSUnits}}</li>
         </ul>
       </li>
       <li>
         <ul>
           <li>Pressure:</li>
-          <li>{{hourly0.pressure | formatPressureFromHPA}}</li>
+          <li>{{hourly0.pressure | formatPressureFromHPA | bindField:useUSUnits}}</li>
         </ul>
       </li>
       <li>
@@ -139,7 +140,7 @@
       <li>
         <ul>
           <li>Visibility:</li>
-          <li>{{hourly0.visibility | formatVisibility}}</li>
+          <li>{{hourly0.visibility | formatVisibility | bindField:useUSUnits}}</li>
         </ul>
       </li>
     </ul>

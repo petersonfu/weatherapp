@@ -12,12 +12,13 @@
             </div>
           </li>
           <li class="temperature">
-            {{city.weatherData.hourly.data[0].temperature | formatTemperature}}
+            {{city.weatherData.hourly.data[0].temperature | formatTemperature | bindField:useUSUnits}}
           </li>
         </ul>
       </a>
     </li>
   </ul>
+  <button ng-click="useUSUnits.flip()">Test binding</button>
 </div>
 <nav>
   <ul></ul>

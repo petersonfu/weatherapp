@@ -9,11 +9,12 @@
  * Filter in the weatherappNgApp.
  */
 angular.module('weatherappNgApp')
-  .filter('formatTemperature', function () {
+  .filter('formatTemperature', function (useUSUnits) {
     return function (temp) {
-      var useUSUnits = false;
+      var useUSUnitsValue = useUSUnits.value;
+
       // If using US units, then convert from Celsius.
       // See: http://fahrenheittocelsius.com
-      return Math.round(useUSUnits ?  (temp * 9/5 + 32) : temp) +"˚";
+      return Math.round(useUSUnitsValue ?  (temp * 9/5 + 32) : temp) +"˚";
     };
   });

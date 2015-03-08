@@ -9,11 +9,12 @@
  * Filter in the weatherappNgApp.
  */
 angular.module('weatherappNgApp')
-  .filter('formatPressureFromHPA', function() {
+  .filter('formatPressureFromHPA', function(useUSUnits) {
     return function(pressure) {
+      var useUSUnitsValue = useUSUnits.value;
 
       // If using US units, convert to inches.
-      if (this.useUSUnits) {
+      if (useUSUnitsValue) {
         return ((pressure * 0.000295299830714 * 100).toFixed(2)) + " in";
       }
 
