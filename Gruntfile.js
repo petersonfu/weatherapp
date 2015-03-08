@@ -453,6 +453,22 @@ module.exports = function (grunt) {
             'Gruntfile.js'
           ]
         }]
+      },
+      custom: {
+        options: {
+          // use languages option to define a simple matcher for html comments.
+          languages: {
+            ".html": {"name": "html", "symbol": "<!--"}
+          }
+        },
+        files: [{
+          expand: true,
+          src: [
+            '<%= yeoman.app %>/views/{,*/}*.html'
+          ],
+          dest: 'views',
+          flatten: true
+        }]
       }
     },
 
@@ -521,7 +537,8 @@ module.exports = function (grunt) {
     'usemin',
     'htmlmin',
     // Attach docco to build chain so the annotated sources are always part of release.
-    'docco'
+    'docco',
+    'docco:custom'
   ]);
 
   grunt.registerTask('default', [

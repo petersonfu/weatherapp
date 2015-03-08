@@ -1,10 +1,12 @@
 <div id="cities-list">
   <ul>
+    <!-- use ng-class to bind -->
     <li ng-repeat="city in cities" ng-class="city.weatherData | conditionClassname">
       <a ng-href="#city/{{city.id}}">
         <ul>
           <li class="city-info">
             <div class="time">
+              <!-- call sinceLastUpdated method defined in $scope -->
               {{city.weatherData.currently.time | localDate:city.weatherData.offset:sinceLastUpdated(city.lastUpdated) | formatTime:true}}
             </div>
             <div class="city-name">

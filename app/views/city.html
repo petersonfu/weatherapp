@@ -1,11 +1,14 @@
+<!-- ng-init creates scope-based variable -->
 <div id="selected-city" ng-init="hourly0 = city.weatherData.hourly.data[0]; daily0 = city.weatherData.daily.data[0]; offset = city.weatherData.offset;">
   <button ng-click="useUSUnits.flip()">Test binding</button>
   <section id="city-header">
     <h2 ng-bind="city.name"></h2>
     <h4 ng-bind="hourly0.summary"></h4>
+    <!-- use bindField to trigger re-calculation when useUSUnits changed. -->
     <h1 ng-bind="hourly0.temperature | formatTemperature | bindField:useUSUnits"></h1>
   </section>
   <section id="today">
+    <!-- apply localDate filter by localDate*Filter* -->
     <ul class="today-overview"
         ng-init="localDate = localDateFilter(city.weatherData.currently.time, offset)">
       <li ng-bind="localDate | weekDayForDate">
@@ -18,9 +21,12 @@
       </li>
     </ul>
     <div class="today-hourly-list-container">
+      <!-- ng-style expects a js object -->
       <ul class="today-hourly-list" ng-style="{width: Math.min(city.weatherData.hourly.data.length, 24) * 64 +'px'}">
+        <!-- limit to maximum 24 hours forecast -->
         <li ng-repeat="data in city.weatherData.hourly.data | limitTo:24">
           <ul>
+            <!-- $first helper -->
             <li ng-if="$first">
               Now
             </li>
@@ -46,6 +52,7 @@
             {{data.time | localDate:offset | weekDayForDate}}
           </li>
           <li>
+            <!-- use ng-src to bind to data -->
             <img ng-src="images/{{data.icon}}.png">
           </li>
           <li>
