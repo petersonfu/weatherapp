@@ -9,8 +9,6 @@
  */
 angular.module('weatherappNgApp')
   .factory('cities', function () {
-    // Service logic
-    // ...
 
     var cities = [{
         id: 'sanjose',
@@ -28,7 +26,6 @@ angular.module('weatherappNgApp')
         weatherData: null
       }];
 
-    // Public API here
     return {
       cities: function () {
         return cities;

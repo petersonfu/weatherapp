@@ -1,5 +1,9 @@
 'use strict';
 
+// This service provides a wrapper around the boolean useUSUnits value. It is
+// intended to be a global object, and dependents can apply bindField:useUSUnits
+// to trigger recalculate once it's changed. Note that controllers should have
+// this service injected in and propagate it to $scope.
 /**
  * @ngdoc service
  * @name weatherappNgApp.useUSUnits
@@ -9,9 +13,6 @@
  */
 angular.module('weatherappNgApp')
   .factory('useUSUnits', function () {
-    // Service logic
-    // ...
-
     var useUSUnits = {
       value: true
     };
@@ -20,6 +21,5 @@ angular.module('weatherappNgApp')
       useUSUnits.value = !useUSUnits.value;
     };
 
-    // Public API here
     return useUSUnits;
   });

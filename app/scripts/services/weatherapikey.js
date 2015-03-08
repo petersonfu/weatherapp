@@ -1,5 +1,6 @@
 'use strict';
 
+// Constant values could be injected into services.
 /**
  * @ngdoc service
  * @name weatherappNgApp.weatherAPIKey

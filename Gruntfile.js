@@ -240,7 +240,8 @@ module.exports = function (grunt) {
           '<%= yeoman.dist %>/styles/{,*/}*.css',
           '<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
           '<%= yeoman.dist %>/styles/fonts/*',
-          // ! ignores the directories.
+          // ! Do not append cachebuster to image icons, since they are referenced
+          // by the templates dynamically.
           '!<%= yeoman.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
       }
@@ -423,7 +424,9 @@ module.exports = function (grunt) {
       }
     },
 
-    // Docco settings
+    // Docco settings.
+    // Flatten means ignoring the paths and keeping only the file name
+    // as the generated annotated file name.
     docco: {
       options: {
         dst: 'dist/docs',
@@ -440,7 +443,7 @@ module.exports = function (grunt) {
         }, {
           expand: true,
           src: [
-            'test/spec/**/*.js'
+            'test/{,*/}*.js'
           ],
           dest: 'test',
           flatten: true
@@ -454,6 +457,8 @@ module.exports = function (grunt) {
     },
 
     // Deploy setting - run 'grunt build; grunt buildcontrol:pages' to push to github pages.
+    // The dist folder will be pushed to gh-pages branch of the repo, and so be
+    // available via github pages service.
     buildcontrol: {
       options: {
         dir: 'dist',
@@ -515,6 +520,7 @@ module.exports = function (grunt) {
     'filerev',
     'usemin',
     'htmlmin',
+    // Attach docco to build chain so the annotated sources are always part of release.
     'docco'
   ]);
 

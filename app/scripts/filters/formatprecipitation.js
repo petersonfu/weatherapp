@@ -1,5 +1,7 @@
 'use strict';
 
+// useUSUnits service is injected here. precipitation is (re)calculated when
+// triggered by bindField:useUSUnits in templates.
 /**
  * @ngdoc filter
  * @name weatherappNgApp.filter:formatPrecipitation
