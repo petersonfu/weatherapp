@@ -24,9 +24,16 @@ angular
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
         resolve: {
-          immediate: [function() {
-            $('body').removeClass().addClass('show-cities-list');
-          }]
+          citiesData: function(CityService, cities, $q) {
+            var promises = $.map(cities.cities(), function(city) {
+              return CityService.getWeatherData(city);
+            });
+
+            return $q.all(promises).then(function(cities) {
+              $('body').removeClass().addClass('show-cities-list');
+              return cities;
+            });
+          }
         }
       })
       .when('/add', {
@@ -41,11 +48,20 @@ angular
         templateUrl: 'views/city.html',
         controller: 'CityCtrl',
         resolve: {
-          immediate: [function() {
-            $('body').removeClass().addClass('show-selected-city');
-            $('body').removeClass('is-cloudy').removeClass('is-night').removeClass('is-day').addClass(this.conditionClassname(city.weatherData));
-            $('nav').removeClass('is-cloudy').removeClass('is-night').removeClass('is-day').addClass(this.conditionClassname(city.weatherData));
-          }]
+          cityData: function(CityService, cities, $route, $location, conditionClassnameFilter) {
+            var city = cities.city($route.current.params.city_id);
+            if (!city) {
+              $location.path('/');
+            }
+            return CityService
+              .getWeatherData(city)
+              .then(function(city) {
+                $('body').removeClass().addClass('show-selected-city');
+                $('body').removeClass('is-cloudy').removeClass('is-night').removeClass('is-day')
+                  .addClass(conditionClassnameFilter(city.weatherData));
+                return city;
+              });
+          }
         }
       })
       .otherwise({
