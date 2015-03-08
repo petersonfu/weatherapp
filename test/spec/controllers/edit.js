@@ -1,22 +1,22 @@
 'use strict';
 
-describe('Controller: MainCtrl', function () {
+describe('Controller: EditCtrl', function () {
 
   // load the controller's module
   beforeEach(module('weatherappNgApp'));
 
-  var MainCtrl,
+  var EditCtrl,
     scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($controller, $rootScope) {
     scope = $rootScope.$new();
-    MainCtrl = $controller('MainCtrl', {
+    EditCtrl = $controller('EditCtrl', {
       $scope: scope
     });
   }));
 
   it('should attach a list of awesomeThings to the scope', function () {
-    expect(MainCtrl.cities.length).toBe(2);
+    expect(scope.awesomeThings.length).toBe(3);
   });
 });

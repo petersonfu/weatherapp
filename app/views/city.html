@@ -1,0 +1,150 @@
+<div id="selected-city" ng-init="hourly0 = city.weatherData.hourly.data[0]; daily0 = city.weatherData.daily.data[0]; offset = city.weatherData.offset;">
+  <section id="city-header">
+    <h2 ng-bind="city.name"></h2>
+    <h4 ng-bind="hourly0.summary"></h4>
+    <h1 ng-bind="hourly0.temperature | formatTemperature"></h1>
+  </section>
+  <section id="today">
+    <ul class="today-overview"
+        ng-init="localDate = localDateFilter(city.weatherData.currently.time, offset)">
+      <li ng-bind="localDate | weekDayForDate">
+      </li>
+      <li ng-bind="relativeDate(localDate)">
+      </li>
+      <li ng-bind="daily0.temperatureMax | formatTemperature">
+      </li>
+      <li ng-bind="daily0.temperatureMin | formatTemperature">
+      </li>
+    </ul>
+    <div class="today-hourly-list-container">
+      <ul class="today-hourly-list" ng-style="{width: Math.min(city.weatherData.hourly.data.length, 24) * 64 +'px'}">
+        <li ng-repeat="data in city.weatherData.hourly.data | limitTo:24">
+          <ul>
+            <li ng-if="$first">
+              Now
+            </li>
+            <li ng-if="!$first">
+              {{data.time | localDate:offset | formatTime:false}}
+            </li>
+            <li>
+              <img ng-src="images/{{data.icon}}.png">
+            </li>
+            <li>
+              {{data.temperature | formatTemperature}}
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </section>
+  <section id="forecast">
+    <ul class="forecast-list">
+      <li ng-repeat="data in city.weatherData.daily.data">
+        <ul>
+          <li>
+            {{data.time | localDate:offset | weekDayForDate}}
+          </li>
+          <li>
+            <img ng-src="images/{{data.icon}}.png">
+          </li>
+          <li>
+            {{data.temperatureMax | formatTemperature}}
+          </li>
+          <li>
+            {{data.temperatureMin | formatTemperature}}
+          </li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+  <section id="today-details">
+    <p class="today-summary">
+      Today:&nbsp;
+      {{city.weatherData.daily.summary}}
+    </p>
+    <ul class="today-details-list">
+      <li>
+        <ul>
+          <li>Sunrise:</li>
+          <li>{{daily0.sunriseTime | localDate:offset | formatTime:true}}</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li>Sunrise:</li>
+          <li>{{daily0.sunsetTime | localDate:offset | formatTime:true}}</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li ng-if="hourly0.precipType == 'snow'">Chance of Snow:</li>
+          <li ng-if="hourly0.precipType != 'snow'">Chance of Rain:</li>
+          <li>{{hourly0.precipProbability | formatPercentage}}</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li>Humidity:</li>
+          <li>{{hourly0.humidity | formatPercentage}}</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li>Wind:</li>
+          <li>{{hourly0 | formatWind}}</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li>Feels like:</li>
+          <li>{{hourly0.apparentTemperature | formatTemperature}}</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li>Precipitation:</li>
+          <li>{{hourly0.precipIntensity | formatPrecipitation}}</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li>Pressure:</li>
+          <li>{{hourly0.pressure | formatPressureFromHPA}}</li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li></li>
+          <li></li>
+        </ul>
+      </li>
+      <li>
+        <ul>
+          <li>Visibility:</li>
+          <li>{{hourly0.visibility | formatVisibility}}</li>
+        </ul>
+      </li>
+    </ul>
+  </section>
+</div>
+<nav>
+  <ul></ul>
+</nav>

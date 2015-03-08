@@ -22,11 +22,29 @@ angular
     $routeProvider
       .when('/', {
         templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl',
+        resolve: {
+          immediate: [function() {
+            $('body').removeClass().addClass('show-cities-list');
+          }]
+        }
       })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
+      .when('/add', {
+        templateUrl: 'views/add.html',
+        controller: 'AddCtrl'
+      })
+      .when('/edit', {
+        templateUrl: 'views/edit.html',
+        controller: 'EditCtrl'
+      })
+      .when('/city/:city_id', {
+        templateUrl: 'views/city.html',
+        controller: 'CityCtrl',
+        resolve: {
+          immediate: [function() {
+            $('body').removeClass().addClass('show-selected-city');
+          }]
+        }
       })
       .otherwise({
         redirectTo: '/'
