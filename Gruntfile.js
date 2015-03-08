@@ -427,18 +427,27 @@ module.exports = function (grunt) {
     docco: {
       options: {
         dst: 'dist/docs',
-        layout: 'linear'
+        layout: 'parallel'
       },
       docs: {
         files: [{
           expand: true,
           src: [
             '<%= yeoman.app %>/scripts/{,*/}*.js'
-          ]
+          ],
+          dest: 'app',
+          flatten: true
         }, {
           expand: true,
           src: [
-            'test/spec/{,*/}*.js'
+            'test/spec/**/*.js'
+          ],
+          dest: 'test',
+          flatten: true
+        }, {
+          expand: true,
+          src: [
+            'Gruntfile.js'
           ]
         }]
       }
