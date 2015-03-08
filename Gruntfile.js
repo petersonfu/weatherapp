@@ -423,6 +423,27 @@ module.exports = function (grunt) {
       }
     },
 
+    // Docco settings
+    docco: {
+      options: {
+        dst: 'dist/docs',
+        layout: 'linear'
+      },
+      docs: {
+        files: [{
+          expand: true,
+          src: [
+            '<%= yeoman.app %>/scripts/{,*/}*.js'
+          ]
+        }, {
+          expand: true,
+          src: [
+            'test/spec/{,*/}*.js'
+          ]
+        }]
+      }
+    },
+
     // Deploy setting - run 'grunt build; grunt buildcontrol:pages' to push to github pages.
     buildcontrol: {
       options: {
@@ -484,7 +505,8 @@ module.exports = function (grunt) {
     'uglify',
     'filerev',
     'usemin',
-    'htmlmin'
+    'htmlmin',
+    'docco'
   ]);
 
   grunt.registerTask('default', [
