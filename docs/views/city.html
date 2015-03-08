@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>city.html</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+      <ul id="jump_to">
+        <li>
+          <a class="large" href="javascript:void(0);">Jump To &hellip;</a>
+          <a class="small" href="javascript:void(0);">+</a>
+          <div id="jump_wrapper">
+          <div id="jump_page">
+            
+              
+              <a class="source" href="add.html">
+                add.html
+              </a>
+            
+              
+              <a class="source" href="city.html">
+                city.html
+              </a>
+            
+              
+              <a class="source" href="edit.html">
+                edit.html
+              </a>
+            
+              
+              <a class="source" href="main.html">
+                main.html
+              </a>
+            
+          </div>
+        </li>
+      </ul>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>city.html</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>ng-init creates scope-based variable —&gt;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"selected-city"</span> <span class="hljs-attribute">ng-init</span>=<span class="hljs-value">"hourly0 = city.weatherData.hourly.data[0]; daily0 = city.weatherData.daily.data[0]; offset = city.weatherData.offset;"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">button</span> <span class="hljs-attribute">ng-click</span>=<span class="hljs-value">"useUSUnits.flip()"</span>&gt;</span>Test binding<span class="hljs-tag">&lt;/<span class="hljs-title">button</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"city-header"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">h2</span> <span class="hljs-attribute">ng-bind</span>=<span class="hljs-value">"city.name"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h2</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">h4</span> <span class="hljs-attribute">ng-bind</span>=<span class="hljs-value">"hourly0.summary"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h4</span>&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <p>use bindField to trigger re-calculation when useUSUnits changed. —&gt;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-tag">&lt;<span class="hljs-title">h1</span> <span class="hljs-attribute">ng-bind</span>=<span class="hljs-value">"hourly0.temperature | formatTemperature | bindField:useUSUnits"</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">h1</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"today"</span>&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>apply localDate filter by localDate<em>Filter</em> —&gt;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"today-overview"</span>
+        <span class="hljs-attribute">ng-init</span>=<span class="hljs-value">"localDate = localDateFilter(city.weatherData.currently.time, offset)"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">ng-bind</span>=<span class="hljs-value">"localDate | weekDayForDate"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">ng-bind</span>=<span class="hljs-value">"relativeDate(localDate)"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">ng-bind</span>=<span class="hljs-value">"daily0.temperatureMax | formatTemperature | bindField:useUSUnits"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">ng-bind</span>=<span class="hljs-value">"daily0.temperatureMin | formatTemperature | bindField:useUSUnits"</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">div</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"today-hourly-list-container"</span>&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>ng-style expects a js object —&gt;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>      <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"today-hourly-list"</span> <span class="hljs-attribute">ng-style</span>=<span class="hljs-value">"{width: Math.min(city.weatherData.hourly.data.length, 24) * 64 +'px'}"</span>&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>limit to maximum 24 hours forecast —&gt;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">"data in city.weatherData.hourly.data | limitTo:24"</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>$first helper —&gt;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"$first"</span>&gt;</span>
+              Now
+            <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"!$first"</span>&gt;</span>
+              {{data.time | localDate:offset | formatTime:false}}
+            <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+              <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">ng-src</span>=<span class="hljs-value">"images/{{data.icon}}.png"</span>&gt;</span>
+            <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+            <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+              {{data.temperature | formatTemperature | bindField:useUSUnits}}
+            <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"forecast"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"forecast-list"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">ng-repeat</span>=<span class="hljs-value">"data in city.weatherData.daily.data"</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+            {{data.time | localDate:offset | weekDayForDate}}
+          <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span></pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>use ng-src to bind to data —&gt;</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>            <span class="hljs-tag">&lt;<span class="hljs-title">img</span> <span class="hljs-attribute">ng-src</span>=<span class="hljs-value">"images/{{data.icon}}.png"</span>&gt;</span>
+          <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+            {{data.temperatureMax | formatTemperature | bindField:useUSUnits}}
+          <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+            {{data.temperatureMin | formatTemperature | bindField:useUSUnits}}
+          <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">section</span> <span class="hljs-attribute">id</span>=<span class="hljs-value">"today-details"</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">p</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"today-summary"</span>&gt;</span>
+      Today:&amp;nbsp;
+      {{city.weatherData.daily.summary}}
+    <span class="hljs-tag">&lt;/<span class="hljs-title">p</span>&gt;</span>
+    <span class="hljs-tag">&lt;<span class="hljs-title">ul</span> <span class="hljs-attribute">class</span>=<span class="hljs-value">"today-details-list"</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Sunrise:<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>{{daily0.sunriseTime | localDate:offset | formatTime:true}}<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Sunrise:<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>{{daily0.sunsetTime | localDate:offset | formatTime:true}}<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"hourly0.precipType == 'snow'"</span>&gt;</span>Chance of Snow:<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span> <span class="hljs-attribute">ng-if</span>=<span class="hljs-value">"hourly0.precipType != 'snow'"</span>&gt;</span>Chance of Rain:<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>{{hourly0.precipProbability | formatPercentage}}<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Humidity:<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>{{hourly0.humidity | formatPercentage}}<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Wind:<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>{{hourly0 | formatWind | bindField:useUSUnits}}<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Feels like:<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>{{hourly0.apparentTemperature | formatTemperature | bindField:useUSUnits}}<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Precipitation:<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>{{hourly0.precipIntensity | formatPrecipitation | bindField:useUSUnits}}<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Pressure:<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>{{hourly0.pressure | formatPressureFromHPA | bindField:useUSUnits}}<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+      <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>Visibility:<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+          <span class="hljs-tag">&lt;<span class="hljs-title">li</span>&gt;</span>{{hourly0.visibility | formatVisibility | bindField:useUSUnits}}<span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+        <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+      <span class="hljs-tag">&lt;/<span class="hljs-title">li</span>&gt;</span>
+    <span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+  <span class="hljs-tag">&lt;/<span class="hljs-title">section</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">div</span>&gt;</span>
+<span class="hljs-tag">&lt;<span class="hljs-title">nav</span> <span class="hljs-attribute">ng-class</span>=<span class="hljs-value">"city.weatherData | conditionClassname"</span>&gt;</span>
+  <span class="hljs-tag">&lt;<span class="hljs-title">ul</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-title">ul</span>&gt;</span>
+<span class="hljs-tag">&lt;/<span class="hljs-title">nav</span>&gt;</span></pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>

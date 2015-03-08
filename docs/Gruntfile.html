@@ -1,0 +1,928 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <title>Gruntfile.js</title>
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">
+  <link rel="stylesheet" media="all" href="docco.css" />
+</head>
+<body>
+  <div id="container">
+    <div id="background"></div>
+    
+    <ul class="sections">
+        
+          <li id="title">
+              <div class="annotation">
+                  <h1>Gruntfile.js</h1>
+              </div>
+          </li>
+        
+        
+        
+        <li id="section-1">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-1">&#182;</a>
+              </div>
+              <p>Generated on 2015-03-07 using generator-angular 0.11.1</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre><span class="hljs-pi">'use strict'</span>;</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-2">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-2">&#182;</a>
+              </div>
+              <h1 id="globbing">Globbing</h1>
+<p>for performance reasons we’re only matching one level down:
+‘test/spec/{,<em>/}</em>.js’
+use this if you want to recursively match all subfolders:
+‘test/spec/<em>*/</em>.js’</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+<span class="hljs-built_in">module</span>.exports = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(grunt)</span> </span>{</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-3">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-3">&#182;</a>
+              </div>
+              <p>Load grunt tasks automatically</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-built_in">require</span>(<span class="hljs-string">'load-grunt-tasks'</span>)(grunt);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-4">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-4">&#182;</a>
+              </div>
+              <p>Time how long tasks take. Can help when optimizing build times</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-built_in">require</span>(<span class="hljs-string">'time-grunt'</span>)(grunt);</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-5">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-5">&#182;</a>
+              </div>
+              <p>Configurable paths for the application</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  <span class="hljs-keyword">var</span> appConfig = {
+    app: <span class="hljs-built_in">require</span>(<span class="hljs-string">'./bower.json'</span>).appPath || <span class="hljs-string">'app'</span>,
+    dist: <span class="hljs-string">'dist'</span>
+  };</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-6">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-6">&#182;</a>
+              </div>
+              <p>Define the configuration for all the tasks</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>  grunt.initConfig({</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-7">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-7">&#182;</a>
+              </div>
+              <p>Project settings</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    yeoman: appConfig,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-8">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-8">&#182;</a>
+              </div>
+              <p>Watches files for changes and runs tasks based on the changed files</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    watch: {
+      bower: {
+        files: [<span class="hljs-string">'bower.json'</span>],
+        tasks: [<span class="hljs-string">'wiredep'</span>]
+      },
+      js: {
+        files: [<span class="hljs-string">'&lt;%= yeoman.app %&gt;/scripts/{,*/}*.js'</span>],
+        tasks: [<span class="hljs-string">'newer:jshint:all'</span>],
+        options: {
+          livereload: <span class="hljs-string">'&lt;%= connect.options.livereload %&gt;'</span>
+        }
+      },
+      jsTest: {
+        files: [<span class="hljs-string">'test/spec/{,*/}*.js'</span>],
+        tasks: [<span class="hljs-string">'newer:jshint:test'</span>, <span class="hljs-string">'karma'</span>]
+      },
+      compass: {
+        files: [<span class="hljs-string">'&lt;%= yeoman.app %&gt;/styles/{,*/}*.{scss,sass}'</span>],
+        tasks: [<span class="hljs-string">'compass:server'</span>, <span class="hljs-string">'autoprefixer'</span>]
+      },
+      gruntfile: {
+        files: [<span class="hljs-string">'Gruntfile.js'</span>]
+      },
+      livereload: {
+        options: {
+          livereload: <span class="hljs-string">'&lt;%= connect.options.livereload %&gt;'</span>
+        },
+        files: [
+          <span class="hljs-string">'&lt;%= yeoman.app %&gt;/{,*/}*.html'</span>,
+          <span class="hljs-string">'.tmp/styles/{,*/}*.css'</span>,
+          <span class="hljs-string">'&lt;%= yeoman.app %&gt;/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'</span>
+        ]
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-9">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-9">&#182;</a>
+              </div>
+              <p>The actual grunt server settings</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    connect: {
+      options: {
+        port: <span class="hljs-number">9000</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-10">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-10">&#182;</a>
+              </div>
+              <p>Change this to ‘0.0.0.0’ to access the server from outside.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>        hostname: <span class="hljs-string">'localhost'</span>,
+        livereload: <span class="hljs-number">35729</span>
+      },
+      livereload: {
+        options: {
+          open: <span class="hljs-literal">true</span>,
+          middleware: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(connect)</span> </span>{
+            <span class="hljs-keyword">return</span> [
+              connect.static(<span class="hljs-string">'.tmp'</span>),
+              connect().use(
+                <span class="hljs-string">'/bower_components'</span>,
+                connect.static(<span class="hljs-string">'./bower_components'</span>)
+              ),
+              connect().use(
+                <span class="hljs-string">'/app/styles'</span>,
+                connect.static(<span class="hljs-string">'./app/styles'</span>)
+              ),
+              connect.static(appConfig.app)
+            ];
+          }
+        }
+      },
+      test: {
+        options: {
+          port: <span class="hljs-number">9001</span>,
+          middleware: <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(connect)</span> </span>{
+            <span class="hljs-keyword">return</span> [
+              connect.static(<span class="hljs-string">'.tmp'</span>),
+              connect.static(<span class="hljs-string">'test'</span>),
+              connect().use(
+                <span class="hljs-string">'/bower_components'</span>,
+                connect.static(<span class="hljs-string">'./bower_components'</span>)
+              ),
+              connect.static(appConfig.app)
+            ];
+          }
+        }
+      },
+      dist: {
+        options: {
+          open: <span class="hljs-literal">true</span>,
+          base: <span class="hljs-string">'&lt;%= yeoman.dist %&gt;'</span>
+        }
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-11">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-11">&#182;</a>
+              </div>
+              <p>Make sure code styles are up to par and there are no obvious mistakes</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    jshint: {
+      options: {
+        jshintrc: <span class="hljs-string">'.jshintrc'</span>,
+        reporter: <span class="hljs-built_in">require</span>(<span class="hljs-string">'jshint-stylish'</span>)
+      },
+      all: {
+        src: [
+          <span class="hljs-string">'Gruntfile.js'</span>,
+          <span class="hljs-string">'&lt;%= yeoman.app %&gt;/scripts/{,*/}*.js'</span>
+        ]
+      },
+      test: {
+        options: {
+          jshintrc: <span class="hljs-string">'test/.jshintrc'</span>
+        },
+        src: [<span class="hljs-string">'test/spec/{,*/}*.js'</span>]
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-12">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-12">&#182;</a>
+              </div>
+              <p>Empties folders to start fresh</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    clean: {
+      dist: {
+        files: [{
+          dot: <span class="hljs-literal">true</span>,
+          src: [
+            <span class="hljs-string">'.tmp'</span>,
+            <span class="hljs-string">'&lt;%= yeoman.dist %&gt;/{,*/}*'</span>,
+            <span class="hljs-string">'!&lt;%= yeoman.dist %&gt;/.git{,*/}*'</span>
+          ]
+        }]
+      },
+      server: <span class="hljs-string">'.tmp'</span>
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-13">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-13">&#182;</a>
+              </div>
+              <p>Add vendor prefixed styles</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    autoprefixer: {
+      options: {
+        browsers: [<span class="hljs-string">'last 1 version'</span>]
+      },
+      server: {
+        options: {
+          map: <span class="hljs-literal">true</span>,
+        },
+        files: [{
+          expand: <span class="hljs-literal">true</span>,
+          cwd: <span class="hljs-string">'.tmp/styles/'</span>,
+          src: <span class="hljs-string">'{,*/}*.css'</span>,
+          dest: <span class="hljs-string">'.tmp/styles/'</span>
+        }]
+      },
+      dist: {
+        files: [{
+          expand: <span class="hljs-literal">true</span>,
+          cwd: <span class="hljs-string">'.tmp/styles/'</span>,
+          src: <span class="hljs-string">'{,*/}*.css'</span>,
+          dest: <span class="hljs-string">'.tmp/styles/'</span>
+        }]
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-14">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-14">&#182;</a>
+              </div>
+              <p>Automatically inject Bower components into the app</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    wiredep: {
+      app: {
+        src: [<span class="hljs-string">'&lt;%= yeoman.app %&gt;/index.html'</span>],
+        ignorePath:  <span class="hljs-regexp">/\.\.\//</span>
+      },
+      test: {
+        devDependencies: <span class="hljs-literal">true</span>,
+        src: <span class="hljs-string">'&lt;%= karma.unit.configFile %&gt;'</span>,
+        ignorePath:  <span class="hljs-regexp">/\.\.\//</span>,
+        fileTypes:{
+          js: {
+            block: <span class="hljs-regexp">/(([\s\t]*)\/{2}\s*?bower:\s*?(\S*))(\n|\r|.)*?(\/{2}\s*endbower)/gi</span>,
+              detect: {
+                js: <span class="hljs-regexp">/'(.*\.js)'/gi</span>
+              },
+              replace: {
+                js: <span class="hljs-string">'\'{{filePath}}\','</span>
+              }
+            }
+          }
+      },
+      sass: {
+        src: [<span class="hljs-string">'&lt;%= yeoman.app %&gt;/styles/{,*/}*.{scss,sass}'</span>],
+        ignorePath: <span class="hljs-regexp">/(\.\.\/){1,2}bower_components\//</span>
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-15">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-15">&#182;</a>
+              </div>
+              <p>Compiles Sass to CSS and generates necessary files if requested</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    compass: {
+      options: {
+        sassDir: <span class="hljs-string">'&lt;%= yeoman.app %&gt;/styles'</span>,
+        cssDir: <span class="hljs-string">'.tmp/styles'</span>,
+        generatedImagesDir: <span class="hljs-string">'.tmp/images/generated'</span>,
+        imagesDir: <span class="hljs-string">'&lt;%= yeoman.app %&gt;/images'</span>,
+        javascriptsDir: <span class="hljs-string">'&lt;%= yeoman.app %&gt;/scripts'</span>,
+        fontsDir: <span class="hljs-string">'&lt;%= yeoman.app %&gt;/styles/fonts'</span>,
+        importPath: <span class="hljs-string">'./bower_components'</span>,
+        httpImagesPath: <span class="hljs-string">'/images'</span>,
+        httpGeneratedImagesPath: <span class="hljs-string">'/images/generated'</span>,
+        httpFontsPath: <span class="hljs-string">'/styles/fonts'</span>,
+        relativeAssets: <span class="hljs-literal">false</span>,
+        assetCacheBuster: <span class="hljs-literal">false</span>,
+        raw: <span class="hljs-string">'Sass::Script::Number.precision = 10\n'</span>
+      },
+      dist: {
+        options: {
+          generatedImagesDir: <span class="hljs-string">'&lt;%= yeoman.dist %&gt;/images/generated'</span>
+        }
+      },
+      server: {
+        options: {
+          sourcemap: <span class="hljs-literal">true</span>
+        }
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-16">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-16">&#182;</a>
+              </div>
+              <p>Renames files for browser caching purposes</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    filerev: {
+      dist: {
+        src: [
+          <span class="hljs-string">'&lt;%= yeoman.dist %&gt;/scripts/{,*/}*.js'</span>,
+          <span class="hljs-string">'&lt;%= yeoman.dist %&gt;/styles/{,*/}*.css'</span>,
+          <span class="hljs-string">'&lt;%= yeoman.dist %&gt;/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'</span>,
+          <span class="hljs-string">'&lt;%= yeoman.dist %&gt;/styles/fonts/*'</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-17">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-17">&#182;</a>
+              </div>
+              <p>! Do not append cachebuster to image icons, since they are referenced
+by the templates dynamically.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          <span class="hljs-string">'!&lt;%= yeoman.dist %&gt;/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'</span>
+        ]
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-18">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-18">&#182;</a>
+              </div>
+              <p>Reads HTML for usemin blocks to enable smart builds that automatically
+concat, minify and revision files. Creates configurations in memory so
+additional tasks can operate on them</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    useminPrepare: {
+      html: <span class="hljs-string">'&lt;%= yeoman.app %&gt;/index.html'</span>,
+      options: {
+        dest: <span class="hljs-string">'&lt;%= yeoman.dist %&gt;'</span>,
+        flow: {
+          html: {
+            steps: {
+              js: [<span class="hljs-string">'concat'</span>, <span class="hljs-string">'uglifyjs'</span>],
+              css: [<span class="hljs-string">'cssmin'</span>]
+            },
+            post: {}
+          }
+        }
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-19">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-19">&#182;</a>
+              </div>
+              <p>Performs rewrites based on filerev and the useminPrepare configuration</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    usemin: {
+      html: [<span class="hljs-string">'&lt;%= yeoman.dist %&gt;/{,*/}*.html'</span>],
+      css: [<span class="hljs-string">'&lt;%= yeoman.dist %&gt;/styles/{,*/}*.css'</span>],
+      options: {
+        assetsDirs: [
+          <span class="hljs-string">'&lt;%= yeoman.dist %&gt;'</span>,
+          <span class="hljs-string">'&lt;%= yeoman.dist %&gt;/images'</span>,
+          <span class="hljs-string">'&lt;%= yeoman.dist %&gt;/styles'</span>
+        ]
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-20">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-20">&#182;</a>
+              </div>
+              <p>The following <em>-min tasks will produce minified files in the dist folder
+By default, your <code>index.html</code>‘s <!-- Usemin block --> will take care of
+minification. These next options are pre-configured if you do not wish
+to use the Usemin blocks.
+cssmin: {
+  dist: {
+    files: {
+      ‘&lt;%= yeoman.dist %&gt;/styles/main.css’: [
+        ‘.tmp/styles/{,</em>/}*.css’
+      ]
+    }
+  }
+},
+uglify: {
+  dist: {
+    files: {
+      ‘&lt;%= yeoman.dist %&gt;/scripts/scripts.js’: [
+        ‘&lt;%= yeoman.dist %&gt;/scripts/scripts.js’
+      ]
+    }
+  }
+},
+concat: {
+  dist: {}
+},</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>
+    imagemin: {
+      dist: {
+        files: [{
+          expand: <span class="hljs-literal">true</span>,
+          cwd: <span class="hljs-string">'&lt;%= yeoman.app %&gt;/images'</span>,
+          src: <span class="hljs-string">'{,*/}*.{png,jpg,jpeg,gif}'</span>,
+          dest: <span class="hljs-string">'&lt;%= yeoman.dist %&gt;/images'</span>
+        }]
+      }
+    },
+
+    svgmin: {
+      dist: {
+        files: [{
+          expand: <span class="hljs-literal">true</span>,
+          cwd: <span class="hljs-string">'&lt;%= yeoman.app %&gt;/images'</span>,
+          src: <span class="hljs-string">'{,*/}*.svg'</span>,
+          dest: <span class="hljs-string">'&lt;%= yeoman.dist %&gt;/images'</span>
+        }]
+      }
+    },
+
+    htmlmin: {
+      dist: {
+        options: {
+          collapseWhitespace: <span class="hljs-literal">true</span>,
+          conservativeCollapse: <span class="hljs-literal">true</span>,
+          collapseBooleanAttributes: <span class="hljs-literal">true</span>,
+          removeCommentsFromCDATA: <span class="hljs-literal">true</span>,
+          removeOptionalTags: <span class="hljs-literal">true</span>
+        },
+        files: [{
+          expand: <span class="hljs-literal">true</span>,
+          cwd: <span class="hljs-string">'&lt;%= yeoman.dist %&gt;'</span>,
+          src: [<span class="hljs-string">'*.html'</span>, <span class="hljs-string">'views/{,*/}*.html'</span>],
+          dest: <span class="hljs-string">'&lt;%= yeoman.dist %&gt;'</span>
+        }]
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-21">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-21">&#182;</a>
+              </div>
+              <p>ng-annotate tries to make the code safe for minification automatically
+by using the Angular long form for dependency injection.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    ngAnnotate: {
+      dist: {
+        files: [{
+          expand: <span class="hljs-literal">true</span>,
+          cwd: <span class="hljs-string">'.tmp/concat/scripts'</span>,
+          src: <span class="hljs-string">'*.js'</span>,
+          dest: <span class="hljs-string">'.tmp/concat/scripts'</span>
+        }]
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-22">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-22">&#182;</a>
+              </div>
+              <p>Replace Google CDN references</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    cdnify: {
+      dist: {
+        html: [<span class="hljs-string">'&lt;%= yeoman.dist %&gt;/*.html'</span>]
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-23">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-23">&#182;</a>
+              </div>
+              <p>Copies remaining files to places other tasks can use</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    copy: {
+      dist: {
+        files: [{
+          expand: <span class="hljs-literal">true</span>,
+          dot: <span class="hljs-literal">true</span>,
+          cwd: <span class="hljs-string">'&lt;%= yeoman.app %&gt;'</span>,
+          dest: <span class="hljs-string">'&lt;%= yeoman.dist %&gt;'</span>,
+          src: [
+            <span class="hljs-string">'*.{ico,png,txt}'</span>,
+            <span class="hljs-string">'.htaccess'</span>,
+            <span class="hljs-string">'*.html'</span>,
+            <span class="hljs-string">'views/{,*/}*.html'</span>,
+            <span class="hljs-string">'images/{,*/}*.{webp}'</span>,
+            <span class="hljs-string">'styles/fonts/{,*/}*.*'</span>
+          ]
+        }, {
+          expand: <span class="hljs-literal">true</span>,
+          cwd: <span class="hljs-string">'.tmp/images'</span>,
+          dest: <span class="hljs-string">'&lt;%= yeoman.dist %&gt;/images'</span>,
+          src: [<span class="hljs-string">'generated/*'</span>]
+        }, {
+          expand: <span class="hljs-literal">true</span>,
+          cwd: <span class="hljs-string">'.'</span>,
+          src: <span class="hljs-string">'bower_components/bootstrap-sass-official/assets/fonts/bootstrap/*'</span>,
+          dest: <span class="hljs-string">'&lt;%= yeoman.dist %&gt;'</span>
+        }]
+      },
+      styles: {
+        expand: <span class="hljs-literal">true</span>,
+        cwd: <span class="hljs-string">'&lt;%= yeoman.app %&gt;/styles'</span>,
+        dest: <span class="hljs-string">'.tmp/styles/'</span>,
+        src: <span class="hljs-string">'{,*/}*.css'</span>
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-24">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-24">&#182;</a>
+              </div>
+              <p>Run some tasks in parallel to speed up the build process</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    concurrent: {
+      server: [
+        <span class="hljs-string">'compass:server'</span>
+      ],
+      test: [
+        <span class="hljs-string">'compass'</span>
+      ],
+      dist: [
+        <span class="hljs-string">'compass:dist'</span>,
+        <span class="hljs-string">'imagemin'</span>,
+        <span class="hljs-string">'svgmin'</span>
+      ]
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-25">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-25">&#182;</a>
+              </div>
+              <p>Test settings</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    karma: {
+      unit: {
+        configFile: <span class="hljs-string">'test/karma.conf.js'</span>,
+        singleRun: <span class="hljs-literal">true</span>
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-26">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-26">&#182;</a>
+              </div>
+              <p>Docco settings.
+Flatten means ignoring the paths and keeping only the file name
+as the generated annotated file name.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    docco: {
+      options: {
+        dst: <span class="hljs-string">'dist/docs'</span>,
+        layout: <span class="hljs-string">'parallel'</span>
+      },
+      docs: {
+        files: [{
+          expand: <span class="hljs-literal">true</span>,
+          src: [
+            <span class="hljs-string">'&lt;%= yeoman.app %&gt;/scripts/{,*/}*.js'</span>
+          ],
+          dest: <span class="hljs-string">'app'</span>,
+          flatten: <span class="hljs-literal">true</span>
+        }, {
+          expand: <span class="hljs-literal">true</span>,
+          src: [
+            <span class="hljs-string">'test/{,*/}*.js'</span>
+          ],
+          dest: <span class="hljs-string">'test'</span>,
+          flatten: <span class="hljs-literal">true</span>
+        }, {
+          expand: <span class="hljs-literal">true</span>,
+          src: [
+            <span class="hljs-string">'Gruntfile.js'</span>
+          ]
+        }]
+      },
+      custom: {
+        options: {</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-27">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-27">&#182;</a>
+              </div>
+              <p>use languages option to define a simple matcher for html comments.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>          languages: {
+            <span class="hljs-string">".html"</span>: {<span class="hljs-string">"name"</span>: <span class="hljs-string">"html"</span>, <span class="hljs-string">"symbol"</span>: <span class="hljs-string">"&lt;!--"</span>}
+          }
+        },
+        files: [{
+          expand: <span class="hljs-literal">true</span>,
+          src: [
+            <span class="hljs-string">'&lt;%= yeoman.app %&gt;/views/{,*/}*.html'</span>
+          ],
+          dest: <span class="hljs-string">'views'</span>,
+          flatten: <span class="hljs-literal">true</span>
+        }]
+      }
+    },</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-28">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-28">&#182;</a>
+              </div>
+              <p>Deploy setting - run ‘grunt build; grunt buildcontrol:pages’ to push to github pages.
+The dist folder will be pushed to gh-pages branch of the repo, and so be
+available via github pages service.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    buildcontrol: {
+      options: {
+        dir: <span class="hljs-string">'dist'</span>,
+        commit: <span class="hljs-literal">true</span>,
+        push: <span class="hljs-literal">true</span>,
+        message: <span class="hljs-string">'Built %sourceName% from commit %sourceCommit% on branch %sourceBranch%'</span>
+      },
+      pages: {
+        options: {
+          remote: <span class="hljs-string">'git@github.com:petersonfu/weatherapp.git'</span>,
+          branch: <span class="hljs-string">'gh-pages'</span>
+        }
+      }
+    }
+  });
+
+
+  grunt.registerTask(<span class="hljs-string">'serve'</span>, <span class="hljs-string">'Compile then start a connect web server'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(target)</span> </span>{
+    <span class="hljs-keyword">if</span> (target === <span class="hljs-string">'dist'</span>) {
+      <span class="hljs-keyword">return</span> grunt.task.run([<span class="hljs-string">'build'</span>, <span class="hljs-string">'connect:dist:keepalive'</span>]);
+    }
+
+    grunt.task.run([
+      <span class="hljs-string">'clean:server'</span>,
+      <span class="hljs-string">'wiredep'</span>,
+      <span class="hljs-string">'concurrent:server'</span>,
+      <span class="hljs-string">'autoprefixer:server'</span>,
+      <span class="hljs-string">'connect:livereload'</span>,
+      <span class="hljs-string">'watch'</span>
+    ]);
+  });
+
+  grunt.registerTask(<span class="hljs-string">'server'</span>, <span class="hljs-string">'DEPRECATED TASK. Use the "serve" task instead'</span>, <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(target)</span> </span>{
+    grunt.log.warn(<span class="hljs-string">'The `server` task has been deprecated. Use `grunt serve` to start a server.'</span>);
+    grunt.task.run([<span class="hljs-string">'serve:'</span> + target]);
+  });
+
+  grunt.registerTask(<span class="hljs-string">'test'</span>, [
+    <span class="hljs-string">'clean:server'</span>,
+    <span class="hljs-string">'wiredep'</span>,
+    <span class="hljs-string">'concurrent:test'</span>,
+    <span class="hljs-string">'autoprefixer'</span>,
+    <span class="hljs-string">'connect:test'</span>,
+    <span class="hljs-string">'karma'</span>
+  ]);
+
+  grunt.registerTask(<span class="hljs-string">'build'</span>, [
+    <span class="hljs-string">'clean:dist'</span>,
+    <span class="hljs-string">'wiredep'</span>,
+    <span class="hljs-string">'useminPrepare'</span>,
+    <span class="hljs-string">'concurrent:dist'</span>,
+    <span class="hljs-string">'autoprefixer'</span>,
+    <span class="hljs-string">'concat'</span>,
+    <span class="hljs-string">'ngAnnotate'</span>,
+    <span class="hljs-string">'copy:dist'</span>,
+    <span class="hljs-string">'cdnify'</span>,
+    <span class="hljs-string">'cssmin'</span>,
+    <span class="hljs-string">'uglify'</span>,
+    <span class="hljs-string">'filerev'</span>,
+    <span class="hljs-string">'usemin'</span>,
+    <span class="hljs-string">'htmlmin'</span>,</pre></div></div>
+            
+        </li>
+        
+        
+        <li id="section-29">
+            <div class="annotation">
+              
+              <div class="pilwrap ">
+                <a class="pilcrow" href="#section-29">&#182;</a>
+              </div>
+              <p>Attach docco to build chain so the annotated sources are always part of release.</p>
+
+            </div>
+            
+            <div class="content"><div class='highlight'><pre>    <span class="hljs-string">'docco'</span>,
+    <span class="hljs-string">'docco:custom'</span>
+  ]);
+
+  grunt.registerTask(<span class="hljs-string">'default'</span>, [
+    <span class="hljs-string">'newer:jshint'</span>,
+    <span class="hljs-string">'test'</span>,
+    <span class="hljs-string">'build'</span>
+  ]);
+};</pre></div></div>
+            
+        </li>
+        
+    </ul>
+  </div>
+</body>
+</html>
