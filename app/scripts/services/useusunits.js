@@ -18,7 +18,7 @@ angular.module('weatherappNgApp')
 
     useUSUnits.flip = function() {
       useUSUnits.value = !useUSUnits.value;
-    }
+    };
 
     // Public API here
     return useUSUnits;

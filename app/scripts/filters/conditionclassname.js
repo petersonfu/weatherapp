@@ -14,8 +14,7 @@ angular.module('weatherappNgApp')
       var classNames = '';
 
       if (data) {
-        var conditionsNow = data.hourly.data[0],
-          date = new Date(conditionsNow.time * 1000);
+        var conditionsNow = data.hourly.data[0];
 
         // It is day if you're between sunrise and sunset. Then add the is-day class. Otherwise, add is-night
         if (conditionsNow.time >= data.daily.data[0].sunriseTime && conditionsNow.time <= data.daily.data[0].sunsetTime) {
@@ -26,7 +25,7 @@ angular.module('weatherappNgApp')
 
         // If the icon name includes cloudy OR there is a cloudCover above 0.2, make it cloudy.
         // The 0.2 is completely arbitary.
-        if (conditionsNow.icon.indexOf('cloudy') != -1 || conditionsNow.cloudCover > 0.2) {
+        if (conditionsNow.icon.indexOf('cloudy') !== -1 || conditionsNow.cloudCover > 0.2) {
           classNames += 'is-cloudy ';
         }
       }

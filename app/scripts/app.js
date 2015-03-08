@@ -1,3 +1,5 @@
+/* global $ */
+
 'use strict';
 
 /**
@@ -44,12 +46,12 @@ angular
         templateUrl: 'views/edit.html',
         controller: 'EditCtrl'
       })
-      .when('/city/:city_id', {
+      .when('/city/:cityId', {
         templateUrl: 'views/city.html',
         controller: 'CityCtrl',
         resolve: {
           cityData: function(CityService, cities, $route, $location, conditionClassnameFilter) {
-            var city = cities.city($route.current.params.city_id);
+            var city = cities.city($route.current.params.cityId);
             if (!city) {
               $location.path('/');
             }

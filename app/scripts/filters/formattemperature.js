@@ -15,6 +15,6 @@ angular.module('weatherappNgApp')
 
       // If using US units, then convert from Celsius.
       // See: http://fahrenheittocelsius.com
-      return Math.round(useUSUnitsValue ?  (temp * 9/5 + 32) : temp) +"˚";
+      return Math.round(useUSUnitsValue ?  (temp * 9/5 + 32) : temp) +'˚';
     };
   });

@@ -20,8 +20,7 @@ angular.module('weatherappNgApp')
         }
         return $http({
           method: 'jsonp',
-          url: weatherAPIBaseURL +
-            weatherAPIKey + '/' + city.lat + "," + city.lng,
+          url: weatherAPIBaseURL + weatherAPIKey + '/' + city.lat + ',' + city.lng,
           params: {
             units: 'si',
             callback: 'JSON_CALLBACK'

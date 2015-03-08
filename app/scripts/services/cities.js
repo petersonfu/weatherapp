@@ -36,7 +36,7 @@ angular.module('weatherappNgApp')
 
       city: function(id) {
         for (var i = 0; i < cities.length; ++i) {
-          if (cities[i].id == id) {
+          if (cities[i].id === id) {
             return cities[i];
           }
         }

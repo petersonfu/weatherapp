@@ -12,7 +12,7 @@ angular.module('weatherappNgApp')
   .filter('formatPrecipitation', function(useUSUnits) {
     return function(precipitation) {
       var useUSUnitsValue = useUSUnits.value;
-      if (precipitation == 0) {
+      if (precipitation === 0) {
         return '--';
       }
 

@@ -11,6 +11,6 @@
 angular.module('weatherappNgApp')
   .filter('formatPercentage', function() {
     return function(value) {
-      return Math.round(value * 100) + "%";
+      return Math.round(value * 100) + '%';
     };
   });

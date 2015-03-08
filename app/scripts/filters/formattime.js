@@ -21,7 +21,7 @@ angular.module('weatherappNgApp')
         meridian = 'PM';
       }
 
-      if (hours == 0) {
+      if (hours === 0) {
         hours = 12;
       }
 

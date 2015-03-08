@@ -15,7 +15,7 @@ angular.module('weatherappNgApp')
 
       // If using US units, convert to inches.
       if (useUSUnitsValue) {
-        return ((pressure * 0.000295299830714 * 100).toFixed(2)) + " in";
+        return ((pressure * 0.000295299830714 * 100).toFixed(2)) + ' in';
       }
 
       return (pressure).toFixed(2) + ' hPa';

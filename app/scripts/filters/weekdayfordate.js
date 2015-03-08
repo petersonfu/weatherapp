@@ -11,6 +11,6 @@
 angular.module('weatherappNgApp')
   .filter('weekDayForDate', function () {
     return function (date) {
-      return ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"][date.getDay()];
+      return ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday','Sunday'][date.getDay()];
     };
   });
